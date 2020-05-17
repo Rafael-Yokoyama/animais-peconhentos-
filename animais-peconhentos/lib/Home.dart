@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 import 'Animais.dart';
 import 'Boxes.dart';
 
@@ -9,6 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,58 +26,40 @@ class _HomeState extends State<Home> {
       ),
       body: Container(
         padding: EdgeInsets.only(top: 16),
-        child: ListView(
-          children: <Widget>[
-            Boxes(
-              "Serpentes",
-              AssetImage('images/serpentes.jpg'),
-              (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Animais("Serpentes")
-                  )
+        child: StreamBuilder(
+          stream: Firestore.instance.collection('categorias').snapshots(),
+          builder: (context, snapshot){
+
+            
+
+            if(!snapshot.hasData) return const Text("Carregando...");
+
+            return ListView.builder(
+              //itemExtent: 80,
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (context, index){
+                return Boxes(
+                  snapshot.data.documents[index]["nome"],
+                  //AssetImage('images/serpentes.jpg'),
+                  snapshot.data.documents[index]["imagem"],
+                  (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                          return Animais(
+                            snapshot.data.documents[index]["nome"],
+                            snapshot.data.documents[index].documentID
+                          );
+                        }
+                      )
+                    );
+                  },
                 );
-              },
-            ),
-            Boxes(
-              "Aranhas",
-              AssetImage('images/aranhas.jpg'),
-              (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Animais("Aranhas")
-                  )
-                );
-              },
-            ),
-            Boxes(
-              "Escorpiões",
-              AssetImage('images/escorpioes.jpg'),
-              (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Animais("Escorpiões")
-                  )
-                );
-              },
-            ),
-            Boxes(
-              "Marinhos",
-              AssetImage('images/marinhos.jpg'),
-              (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Animais("Marinhos")
-                  )
-                );
-              },
-            ),
-          ],
-        )
+              }
+            );
+          }
+        ),
       ),
     );
   }
