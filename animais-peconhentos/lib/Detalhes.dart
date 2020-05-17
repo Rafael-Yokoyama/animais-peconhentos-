@@ -4,10 +4,10 @@ class Detalhes extends StatefulWidget {
 
   String _nome;
   String _categoria;
-  AssetImage _image;
-  List<String> _caracteristicas;
-  List<String> _sintomas;
-  List<String> _prevencoes;
+  String _image;
+  List<dynamic> _caracteristicas;
+  List<dynamic> _sintomas;
+  List<dynamic> _prevencoes;
 
   Detalhes(this._nome, this._categoria, this._image, this._caracteristicas, this._sintomas, this._prevencoes);
 
@@ -19,61 +19,75 @@ class _DetalhesState extends State<Detalhes> {
 
   Widget mostrarCaracteristicas(){
 
-    List<Widget> lista = List();
+    if(widget._caracteristicas.length>0){
 
-    for(int i = 0; i < widget._caracteristicas.length; i++){
+      List<Widget> lista = List();
 
-      lista.add(
-        Text(
-          " - "+widget._caracteristicas[i],
-          style: TextStyle(
-            fontSize: 20
-          ),
-        )
+      for(int i = 0; i < widget._caracteristicas.length; i++){
+
+        lista.add(
+          Text(
+            " - "+widget._caracteristicas[i],
+            style: TextStyle(
+              fontSize: 20
+            ),
+          )
+        );
+
+      }
+
+      return Column(
+        children: lista,
+        crossAxisAlignment: CrossAxisAlignment.start,
       );
+    } else {
 
+      return Text("");
     }
-
-    return Column(
-      children: lista,
-      crossAxisAlignment: CrossAxisAlignment.start,
-    );
   }
 
   Widget mostrarSintomas(){
 
-    List<Widget> lista = List();
+    if(widget._caracteristicas.length>0){
+      List<Widget> lista = List();
 
-    for(int i = 0; i < widget._sintomas.length; i++){
+      for(int i = 0; i < widget._sintomas.length; i++){
 
-      lista.add(
-        Text(" - "+widget._sintomas[i])
+        lista.add(
+          Text(" - "+widget._sintomas[i])
+        );
+
+      }
+
+      return Column(
+        children: lista,
+        crossAxisAlignment: CrossAxisAlignment.start,
       );
-
+    } else {
+      return Text("");
     }
-
-    return Column(
-      children: lista,
-      crossAxisAlignment: CrossAxisAlignment.start,
-    );
   }
 
   Widget mostrarPrevencoes(){
 
-    List<Widget> lista = List();
+    if(widget._caracteristicas.length>0){
+      List<Widget> lista = List();
 
-    for(int i = 0; i < widget._prevencoes.length; i++){
+      for(int i = 0; i < widget._prevencoes.length; i++){
 
-      lista.add(
-        Text(" - "+widget._prevencoes[i])
+        lista.add(
+          Text(" - "+widget._prevencoes[i])
+        );
+
+      }
+
+      return Column(
+        children: lista,
+        crossAxisAlignment: CrossAxisAlignment.start,
       );
-
+    } else {
+      return Text("");
     }
-
-    return Column(
-      children: lista,
-      crossAxisAlignment: CrossAxisAlignment.start,
-    );
   }
 
   @override
@@ -93,63 +107,66 @@ class _DetalhesState extends State<Detalhes> {
           child: Column(
             children: <Widget>[
               Image(
-                image: widget._image,
+                image: NetworkImage(widget._image),
               ),
               mostrarCaracteristicas(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  RaisedButton(
-                  child: Text("Sintomas", style: TextStyle(fontSize: 20),),
-                  onPressed: (){
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // retorna um objeto do tipo Dialog
-                        return AlertDialog(
-                          title: new Text("Sintomas"),
-                          content: mostrarSintomas(),
-                          actions: <Widget>[
-                            // define os botões na base do dialogo
-                            new FlatButton(
-                              child: new Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
+                  widget._sintomas.length > 0 ?(
+                    RaisedButton(
+                      child: Text("Sintomas", style: TextStyle(fontSize: 20),),
+                      onPressed: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            // retorna um objeto do tipo Dialog
+                            return AlertDialog(
+                              title: new Text("Sintomas"),
+                              content: mostrarSintomas(),
+                              actions: <Widget>[
+                                // define os botões na base do dialogo
+                                new FlatButton(
+                                  child: new Text("Fechar"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
                         );
-                      },
-                    );
-                  }
-                ),
-                RaisedButton(
-                  child: Text("Prevenções", style: TextStyle(fontSize: 20),),
-                  onPressed: (){
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // retorna um objeto do tipo Dialog
-                        return AlertDialog(
-                          title: new Text("Prevenções"),
-                          content: mostrarPrevencoes(),
-                          actions: <Widget>[
-                            // define os botões na base do dialogo
-                            new FlatButton(
-                              child: new Text("Fechar"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
+                      }
+                    )
+                  ) : Text(""),
+                  widget._prevencoes.length > 0 ? (
+                    RaisedButton(
+                      child: Text("Prevenções", style: TextStyle(fontSize: 20),),
+                      onPressed: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            // retorna um objeto do tipo Dialog
+                            return AlertDialog(
+                              title: new Text("Prevenções"),
+                              content: mostrarPrevencoes(),
+                              actions: <Widget>[
+                                // define os botões na base do dialogo
+                                new FlatButton(
+                                  child: new Text("Fechar"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
                         );
-                      },
-                    );
-                  }
-                )
-              ],
+                      }
+                    )
+                  ) : Text(""),
+                ],
               ),
-              
             ],
           ),
         )

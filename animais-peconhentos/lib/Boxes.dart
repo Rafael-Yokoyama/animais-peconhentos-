@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 class Boxes extends StatelessWidget {
 
-  final AssetImage _image;
+  //final Image _image;
+  final String _imgURL;
   final String _nome;
   final Function _funcao;
 
   Boxes(
     this._nome,
-    this._image,
+    this._imgURL,
     this._funcao
   );
 
@@ -36,7 +37,8 @@ class Boxes extends StatelessWidget {
                 //shape: BoxShape.circle,
                 borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.3)),
                 image: DecorationImage(
-                  image: this._image,
+                  //image: this._image,
+                  image: NetworkImage(_imgURL),
                   fit: BoxFit.fill,
                 ),
               ),
