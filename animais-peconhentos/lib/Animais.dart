@@ -10,8 +10,7 @@ class Animais extends StatefulWidget {
   final String _nome;
   final String _categoriaId;
 
-  Animais(this._nome, this._categoriaId){
-  }
+  Animais(this._nome, this._categoriaId);
 
   @override
   _AnimaisState createState() => _AnimaisState();
@@ -40,9 +39,16 @@ class _AnimaisState extends State<Animais> {
 
             if(!snapshot.hasData) return const Text("Carregando...");
 
-            return ListView.builder(
+            return GridView.builder(
               //itemExtent: 80,
               itemCount: snapshot.data.documents.length,
+
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                //crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0
+              ),
+
               itemBuilder: (context, index){
                 return Boxes(
                   snapshot.data.documents[index]["nome"],
