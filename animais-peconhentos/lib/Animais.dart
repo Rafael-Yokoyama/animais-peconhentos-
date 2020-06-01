@@ -50,10 +50,10 @@ class _AnimaisState extends State<Animais> {
               ),
 
               itemBuilder: (context, index){
+
                 return Boxes(
                   snapshot.data.documents[index]["nome"],
                   snapshot.data.documents[index]["imagem"],
-                  //AssetImage('images/jiboia-arco-iris.jpg'),
                   (){
                     Navigator.push(
                       context,
@@ -62,8 +62,6 @@ class _AnimaisState extends State<Animais> {
                           return Detalhes(
                             snapshot.data.documents[index]["nome"],
                             widget._nome,
-                            snapshot.data.documents[index]["imagem"],
-                            //AssetImage('images/jiboia-arco-iris.jpg'),
                             snapshot.data.documents[index]["caracteristicas"],
                             snapshot.data.documents[index]["sintomas"],
                             snapshot.data.documents[index]["prevencoes"]

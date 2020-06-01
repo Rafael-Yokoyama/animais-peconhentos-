@@ -45,7 +45,6 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index){
                 return Boxes(
                   snapshot.data.documents[index]["nome"],
-                  //AssetImage('images/serpentes.jpg'),
                   snapshot.data.documents[index]["imagem"],
                   (){
                     Navigator.push(

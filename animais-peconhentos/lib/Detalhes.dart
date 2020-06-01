@@ -4,12 +4,11 @@ class Detalhes extends StatefulWidget {
 
   String _nome;
   String _categoria;
-  String _image;
-  List<dynamic> _caracteristicas;
+  Map<String, dynamic> _caracteristicas;
   List<dynamic> _sintomas;
   List<dynamic> _prevencoes;
 
-  Detalhes(this._nome, this._categoria, this._image, this._caracteristicas, this._sintomas, this._prevencoes);
+  Detalhes(this._nome, this._categoria, this._caracteristicas, this._sintomas, this._prevencoes);
 
   @override
   _DetalhesState createState() => _DetalhesState();
@@ -23,17 +22,29 @@ class _DetalhesState extends State<Detalhes> {
 
       List<Widget> lista = List();
 
-      for(int i = 0; i < widget._caracteristicas.length; i++){
+      if(widget._caracteristicas.containsKey('imagens')){
+        for(int i = 0; i < widget._caracteristicas['imagens'].length; i++){
 
-        lista.add(
-          Text(
-            " - "+widget._caracteristicas[i],
-            style: TextStyle(
-              fontSize: 20
+          lista.add(
+            Image(
+              image: NetworkImage(widget._caracteristicas['imagens'][i]),
             ),
-          )
-        );
+          );
+        }
+      }
+      if(widget._caracteristicas.containsKey('texto')){
+        for(int i = 0; i < widget._caracteristicas['texto'].length; i++){
 
+          lista.add(
+            Text(
+              " - "+widget._caracteristicas['texto'][i],
+              style: TextStyle(
+                fontSize: 20
+              ),
+            )
+          );
+
+        }
       }
 
       return Column(
@@ -106,9 +117,6 @@ class _DetalhesState extends State<Detalhes> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image(
-                image: NetworkImage(widget._image),
-              ),
               mostrarCaracteristicas(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -120,12 +128,10 @@ class _DetalhesState extends State<Detalhes> {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            // retorna um objeto do tipo Dialog
                             return AlertDialog(
                               title: new Text("Sintomas"),
                               content: mostrarSintomas(),
                               actions: <Widget>[
-                                // define os botões na base do dialogo
                                 new FlatButton(
                                   child: new Text("Fechar"),
                                   onPressed: () {
@@ -146,12 +152,10 @@ class _DetalhesState extends State<Detalhes> {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            // retorna um objeto do tipo Dialog
                             return AlertDialog(
                               title: new Text("Prevenções"),
                               content: mostrarPrevencoes(),
                               actions: <Widget>[
-                                // define os botões na base do dialogo
                                 new FlatButton(
                                   child: new Text("Fechar"),
                                   onPressed: () {
