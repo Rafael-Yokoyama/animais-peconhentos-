@@ -84,7 +84,7 @@ class _HomeState extends State<Home> {
               child: Text(
                 "Chamada de emergência",
                 style: TextStyle(
-                  color: Colors.white
+                  color: Colors.red
                 ),
               )
             )
