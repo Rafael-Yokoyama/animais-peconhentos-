@@ -21,21 +21,22 @@ class Boxes extends StatelessWidget {
         right: MediaQuery.of(context).size.width * 0.05
       ),
       margin: EdgeInsets.only(
-        bottom: 20
+        //bottom: 20
       ),
 
       child: GestureDetector(
         onTap: _funcao,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               //padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
-              width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.4,
+              height: MediaQuery.of(context).size.width * 0.4,
               decoration: BoxDecoration(
                 //shape: BoxShape.circle,
-                borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.3)),
+                borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.4)),
                 image: DecorationImage(
                   //image: this._image,
                   image: NetworkImage(_imgURL),
@@ -43,16 +44,11 @@ class Boxes extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.1,
-              ),
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Text(
-                this._nome,
-                style: TextStyle(
-                  fontSize: 25
-                ),
+            Text(
+              this._nome,
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFFaebb25)
               ),
             ),
           ],
