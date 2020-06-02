@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "731026097108",
+    "firebase_url": "https://animaispeconhentos-ac576.firebaseio.com",
+    "project_id": "animaispeconhentos-ac576",
+    "storage_bucket": "animaispeconhentos-ac576.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731026097108:android:8a404a0408b5a741b20c41",
+        "android_client_info": {
+          "package_name": "io.flutter.app.AnimaisPeconhentos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731026097108-nitj3jlshqv398agg5cra1n206vc38gf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.flutter.app.AnimaisPeconhentos",
+            "certificate_hash": "82f8037c017f5c6744477ff51aefd3441402a474"
+          }
+        },
+        {
+          "client_id": "731026097108-jl7e0ndi9pr3sie3mc246rfhs4decu6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj4qndDc6zx_EFzz7i2eeCTv463Lsmn4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731026097108-jl7e0ndi9pr3sie3mc246rfhs4decu6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
