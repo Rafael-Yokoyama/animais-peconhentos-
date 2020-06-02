@@ -1,3 +1,5 @@
+import 'Sintomas.dart';
+import 'Prevencoes.dart';
 import 'package:flutter/material.dart';
 
 class Detalhes extends StatefulWidget {
@@ -39,7 +41,8 @@ class _DetalhesState extends State<Detalhes> {
             Text(
               " - "+widget._caracteristicas['texto'][i],
               style: TextStyle(
-                fontSize: 20
+                fontSize: 20,
+                color: Color(0xFFFFFFFF)
               ),
             )
           );
@@ -65,7 +68,13 @@ class _DetalhesState extends State<Detalhes> {
       for(int i = 0; i < widget._sintomas.length; i++){
 
         lista.add(
-          Text(" - "+widget._sintomas[i])
+          Text(
+            " - "+widget._sintomas[i],
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xFFFFFFFF)
+            ),
+          )
         );
 
       }
@@ -87,7 +96,13 @@ class _DetalhesState extends State<Detalhes> {
       for(int i = 0; i < widget._prevencoes.length; i++){
 
         lista.add(
-          Text(" - "+widget._prevencoes[i])
+          Text(
+            " - "+widget._prevencoes[i],
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xFFFFFFFF)
+            ),
+          )
         );
 
       }
@@ -105,14 +120,24 @@ class _DetalhesState extends State<Detalhes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         title: Center(
           child: Text(
             widget._nome,
+            style: TextStyle(
+              color: Color(0xFFaebb25)
+            ),
           ),
         ),
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/fundo.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.only(top: 16),
         child: SingleChildScrollView(
           child: Column(
@@ -125,22 +150,15 @@ class _DetalhesState extends State<Detalhes> {
                     RaisedButton(
                       child: Text("Sintomas", style: TextStyle(fontSize: 20),),
                       onPressed: (){
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: new Text("Sintomas"),
-                              content: mostrarSintomas(),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("Fechar"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context){
+                              return Sintomas(
+                                mostrarSintomas()
+                              );
+                            }
+                          )
                         );
                       }
                     )
@@ -149,22 +167,15 @@ class _DetalhesState extends State<Detalhes> {
                     RaisedButton(
                       child: Text("Prevenções", style: TextStyle(fontSize: 20),),
                       onPressed: (){
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: new Text("Prevenções"),
-                              content: mostrarPrevencoes(),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("Fechar"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context){
+                              return Prevencoes(
+                                mostrarPrevencoes()
+                              );
+                            }
+                          )
                         );
                       }
                     )

@@ -16,14 +16,23 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         title: Center(
           child: Text(
             "Animais peçonhentos",
+            style: TextStyle(
+              color: Color(0xFFaebb25)
+            ),
           ),
         ),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/fundo.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.only(top: 16),
         child: StreamBuilder(
           stream: Firestore.instance.collection('categorias').snapshots(),
@@ -63,6 +72,23 @@ class _HomeState extends State<Home> {
               }
             );
           }
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FlatButton(onPressed: null,
+              child: Text(
+                "Chamada de emergência",
+                style: TextStyle(
+                  color: Colors.white
+                ),
+              )
+            )
+          ],
         ),
       ),
     );

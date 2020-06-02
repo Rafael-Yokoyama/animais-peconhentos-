@@ -22,14 +22,23 @@ class _AnimaisState extends State<Animais> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         title: Center(
           child: Text(
             "Lista de ${widget._nome}",
+            style: TextStyle(
+              color: Color(0xFFaebb25)
+            ),
           ),
         ),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/fundo.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.only(top: 16),
         child: StreamBuilder(
           stream: Firestore.instance.collection('categorias').document(widget._categoriaId).collection('animais').snapshots(),
