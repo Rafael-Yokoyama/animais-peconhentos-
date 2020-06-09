@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
 
   }
 
-  Future<String> signInWithGoogle() async {
+  void signInWithGoogle() async {
 
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication =
