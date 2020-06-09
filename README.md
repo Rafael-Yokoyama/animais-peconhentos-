@@ -81,7 +81,14 @@ Este projeto está sob a licença MIT.CLique na [LICENÇA](https://github.com/Ra
 
 [<img src="https://avatars0.githubusercontent.com/u/43430268?s=400&v=4"  width=115 > <br> <sub> Lucas Gsimioni </sub>](https://github.com/LucasGsimioni)  
 
-[<img src="https://avatars0.githubusercontent.com/u/60978293?s=460&u=0db04c04e1f0270a31e1e06e878aa156bf50154f&v=4" width=115 > <br> <sub> Rafael Yokoyama </sub>](https://github.com/Rafael-Yokoyama)   
+[<img src="https://avatars0.githubusercontent.com/u/60978293?s=460&u=0db04c04e1f0270a31e1e06e878aa156bf50154f&v=4" width=115 > <br> <sub> Rafael Yokoyama </sub>](https://github.com/Rafael-Yokoyama)  
+
+
+[<img src="https://avatars0.githubusercontent.com/u/51273479?s=400&v=4" width=115 > <br> <sub> Matias Filho </sub>](https://github.com/matiasfilho81)  
+
+
+
+
 
 
 
