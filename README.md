@@ -1,6 +1,7 @@
  # Design + Funcionalidade
  
- irei colocar ainda 
+
+  ![](https://github.com/Rafael-Yokoyama/animais-peconhentos-/blob/master/gif.foto.gif)
  
   
 ### Animais peçonhentos
@@ -8,7 +9,9 @@
    ![Badge](https://img.shields.io/static/v1?label=license&message=MIT&color=green&style=flat&logo=)  
    
    
-  [Tecnologias](https://github.com/Rafael-Yokoyama/animais-peconhentos-#tecnologias-rocket)  |   [ Sobre o Projeto](https://github.com/Rafael-Yokoyama/animais-peconhentos-#sobre-o-projeto-snake) |  [Como executar o projeto](https://github.com/Rafael-Yokoyama/animais-peconhentos-#como-executar-o-projeto--iphone ) | [Licença ](github.com/Rafael-Yokoyama/animais-peconhentos-#licença-clipboard) | [Desenvolvedores](https://github.com/Rafael-Yokoyama/animais-peconhentos-#desenvolvedores-)
+  [Tecnologias](https://github.com/Rafael-Yokoyama/animais-peconhentos-#tecnologias-rocket)  |   [ Sobre o Projeto](https://github.com/Rafael-Yokoyama/animais-peconhentos-#sobre-o-projeto-snake) |  [Como executar o projeto](https://github.com/Rafael-Yokoyama/animais-peconhentos-#como-executar-o-projeto--iphone ) | [Licença ](https://github.com/Rafael-Yokoyama/animais-peconhentos-#licença) | [Desenvolvedores](https://github.com/Rafael-Yokoyama/animais-peconhentos-#desenvolvedores-)
+  
+
   
 
    
@@ -29,7 +32,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 
 # Sobre o Projeto :snake:
-Este é um projeto da disciplina OP0250 - DESENVOLVIMENTO PARA DISPOSITIVOS MÓVEIS da Universidade São Francisco (USF) do 1º Semeste de 2020 que tem como  objetivo realizar o desenvolvimento de um aplicativo mobile utilizando Flutter, Dart e Firebase para fazer uma espécie de catálogo sobre animais peçonhentos
+Este é um projeto da disciplina OP0250 - DESENVOLVIMENTO PARA DISPOSITIVOS MÓVEIS da Universidade São Francisco (USF) do 1º Semeste de 2020 que tem como  objetivo realizar o desenvolvimento de um aplicativo mobile utilizando Flutter, Dart e Firebase para fazer uma espécie de catálogo sobre animais peçonhentos,cujo o nosso orientador foi o Professor José Matias Lemes Filho .
 
 
 
@@ -54,7 +57,7 @@ flutter run --release
 
 
 
-# Licença :clipboard:
+# Licença 📋
 
 Este projeto está sob a licença MIT.CLique na [LICENÇA](https://github.com/Rafael-Yokoyama/animais-peconhentos-/blob/master/LICENSE) para saber mais .
 
