@@ -39,6 +39,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<String> signInWithGoogle() async {
+
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
@@ -97,14 +98,13 @@ class _HomeState extends State<Home> {
 
     }
 
-    print(idUsuario);
- 
-    
-
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('idUsuario', idUsuario);
 
-    return 'signInWithGoogle succeeded: $user';
+    setState(() {
+      this._idUsuario = idUsuario;
+    });
+
   }
 
   void signOutGoogle() async{
@@ -175,11 +175,7 @@ class _HomeState extends State<Home> {
     return FlatButton(
       splashColor: Colors.grey,
       onPressed: (){
-          signInWithGoogle().whenComplete(() {
-            setState(() {
-              this._idUsuario = "teste";
-            });
-        });
+          signInWithGoogle();
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -213,6 +209,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           FlatButton(
             onPressed: () async{
+
               Location location = new Location();
 
               bool _serviceEnabled;
@@ -237,8 +234,6 @@ class _HomeState extends State<Home> {
 
               _locationData = await location.getLocation();
 
-              print(_locationData);
-              
               await Firestore.instance.collection("usuarios").document(_idUsuario).updateData({
                 "localizacao" :
                 {
