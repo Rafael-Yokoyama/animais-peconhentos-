@@ -33,6 +33,9 @@ $ git clone https://github.com/Rafael-Yokoyama/animais-peconhentos-.git
 ### Vá para o repositório 
 $ cd animais-peconhentos
 
+### Instalar dependências
+ $ pub get
+
 ###  Execute o aplicativo 
 flutter run --release  
 
