@@ -130,45 +130,6 @@ class _DetalhesState extends State<Detalhes> {
         child: Column(
           children: <Widget>[
             mostrarCaracteristicas(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                widget._sintomas.length > 0 ?(
-                  RaisedButton(
-                    child: Text("Sintomas", style: TextStyle(fontSize: 20),),
-                    onPressed: (){
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context){
-                            return Sintomas(
-                              mostrarSintomas()
-                            );
-                          }
-                        )
-                      );
-                    }
-                  )
-                ) : Text(""),
-                widget._prevencoes.length > 0 ? (
-                  RaisedButton(
-                    child: Text("Prevenções", style: TextStyle(fontSize: 20),),
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context){
-                            return Prevencoes(
-                              mostrarPrevencoes()
-                            );
-                          }
-                        )
-                      );
-                    }
-                  )
-                ) : Text(""),
-              ],
-            ),
           ],
         ),
       )
