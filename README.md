@@ -59,7 +59,7 @@ flutter run --release
 Este projeto está sob a licença MIT.CLique na [LICENÇA](https://github.com/Rafael-Yokoyama/animais-peconhentos-/blob/master/LICENSE) para saber mais .
 
 
-# Desenvolvedores ![](https://github.githubassets.com/images/icons/emoji/octocat.png)
+# Desenvolvedores ![](https://github.githubassets.com/images/icons/emoji/octocat.png) 
 
 
 
