@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Animais.dart';
 import 'Boxes.dart';
@@ -21,11 +22,20 @@ class _HomeState extends State<Home> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //final CallsAndMessagesService _service = locator<CallsAndMessagesService>();
 
   dynamic _idUsuario;
 
   _HomeState(){
     _idUsuario = null;
+  }
+
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   Future<Map> _getPreferencias() async{
@@ -124,6 +134,14 @@ class _HomeState extends State<Home> {
       _idUsuario = null;
     });
 
+  }
+
+  Future<dynamic> getContatoAtual() async{
+
+    DocumentSnapshot _dadosUsuario = await Firestore.instance
+      .collection('usuarios').document(this._idUsuario).get();
+    
+    return _dadosUsuario.data['contatoDeEmergencia'];
   }
 
   Widget _gerarTela(){
@@ -243,6 +261,19 @@ class _HomeState extends State<Home> {
                   'longitude': _locationData.longitude,
                 }
               });
+
+              getContatoAtual().then(
+                (value){
+                  _makePhoneCall("tel:$value").then(
+                    (value) => null
+                  ).catchError(
+                    (error) => print (error)
+                  );
+                  //print("chamar: "+value);
+                }
+              ).catchError(
+                (error) => print (error)
+              );
               
             },
             child: Text(
