@@ -44,11 +44,13 @@ class Boxes extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              this._nome,
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(0xFFaebb25)
+            Container(
+            child: Text(
+                this._nome,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFFaebb25)
+                ),
               ),
             ),
           ],

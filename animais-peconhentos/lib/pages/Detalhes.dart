@@ -119,6 +119,7 @@ class _DetalhesState extends State<Detalhes> {
   Widget _gerarTela(){
     return Container(
       height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/fundo.jpg"),
@@ -196,22 +197,21 @@ class _DetalhesState extends State<Detalhes> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Center(
-          child: Text(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Text(
             widget._nome.toUpperCase(),
             style: TextStyle(
               color: Color(0xFFaebb25)
             ),
           ),
         ),
+        body: _gerarTela(),
+        bottomNavigationBar: _gerarRodape()
       ),
-      body: SafeArea(
-        child: _gerarTela()
-      ),
-      bottomNavigationBar: _gerarRodape()
     );
   }
 }

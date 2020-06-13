@@ -1,3 +1,4 @@
+import 'package:aula_2020_03_24/pages/ContatoDeEmergencia.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,7 +36,22 @@ class _HomeState extends State<Home> {
     Map retornar = {'idUsuario': idUsuario};
     
     return retornar;
+  }
+  
+  void initState(){
+    super.initState();
 
+    Future<Map> preferencias = _getPreferencias();
+
+    preferencias.then(
+      (value) {
+        setState(() {
+          this._idUsuario = value['idUsuario'];
+        });
+      }
+    ).catchError(
+      (error) => print (error)
+    );
   }
 
   void signInWithGoogle() async {
@@ -62,13 +78,6 @@ class _HomeState extends State<Home> {
     assert(user.displayName != null);
     assert(user.photoUrl != null);
 
-    //print(user.displayName);
-    //print(user.email);
-
-    //verificar se existe o email no banco
-    //se não houver, salva e pega o novo id
-
-    //se houver apenas retorna o id
     String idUsuario = "";
 
     QuerySnapshot _buscarUsuario = await Firestore.instance
@@ -86,11 +95,8 @@ class _HomeState extends State<Home> {
         {
           'nome': user.displayName,
           'email': user.email,
-          'localizacao' :
-          {
-            'latitude': 0,
-            'longitude': 0,
-          }
+          'localizacao' : { },
+          'contatoDeEmergencia' : ''
         }
       );
 
@@ -171,37 +177,33 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _signInButton(){
-    return FlatButton(
-      splashColor: Colors.grey,
-      onPressed: (){
-          signInWithGoogle();
-      },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(image: AssetImage("images/google_logo.png"), height: 35.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'Conectar com Google',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _gerarRodape(){
     if(_idUsuario==null){
-      return _signInButton();
+      return FlatButton(
+        splashColor: Colors.grey,
+        onPressed: (){
+            signInWithGoogle();
+        },
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image(image: AssetImage("images/google_logo.png"), height: 35.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Conectar com Google',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
     } else {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -250,62 +252,82 @@ class _HomeState extends State<Home> {
               ),
             )
           ),
-          FlatButton(
-            onPressed: () {
-              signOutGoogle();
-              //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return LoginPage();}), ModalRoute.withName('/'));
-            },
-            //color: Colors.deepPurple,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Deslogar',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          )
         ],
       );
     }
   }
 
-  void initState(){
-    super.initState();
+  Widget _gerarCabecalho(){
 
-    Future<Map> preferencias = _getPreferencias();
+    List<Widget> actions = List();
 
-    preferencias.then(
-      (value) {
-        setState(() {
-          this._idUsuario = value['idUsuario'];
-        });
-      }
-    ).catchError(
-      (error) => print (error)
+    if(_idUsuario!=null){
+      actions.add(
+        PopupMenuButton(
+          onSelected: opcaoMenuSelecionada,
+          itemBuilder: (BuildContext context) {
+            return OpcoesMenu.opcoes.map((String choice) {
+              return PopupMenuItem(
+                value: choice,
+                child: Text(choice)
+              );
+            }).toList();
+          }
+        )
+      );
+    }
+
+    return AppBar(
+      backgroundColor: Colors.black,
+      centerTitle: true,
+      title: Text(
+        "Animais peçonhentos".toUpperCase(),
+        style: TextStyle(
+          color: Color(0xFFaebb25)
+        ),
+      ),
+      actions: actions,
     );
+  }
+
+  void opcaoMenuSelecionada(String choice){
+    if(choice == OpcoesMenu.ContatoDeEmergencia){
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context){
+            return ContatoDeEmergencia();
+          }
+        )
+      );
+    } else if(choice == OpcoesMenu.Deslogar) {
+      signOutGoogle();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Center(
-          child: Text(
-            "Animais peçonhentos".toUpperCase(),
-            style: TextStyle(
-              color: Color(0xFFaebb25)
-            ),
-          ),
-        ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: _gerarCabecalho(),
+        body: _gerarTela(),      
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.black,
+          child: _gerarRodape()
+        )
       ),
-      body: SafeArea(
-        child: _gerarTela(),
-      ),      
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: _gerarRodape()
-      )
     );
   }
+}
+
+class OpcoesMenu{
+
+  static const String ContatoDeEmergencia = "Contato de emergência";
+  static const String Deslogar = "Deslogar";
+
+  static const List<String> opcoes = <String>[
+    ContatoDeEmergencia,
+    Deslogar
+  ];
+
 }
