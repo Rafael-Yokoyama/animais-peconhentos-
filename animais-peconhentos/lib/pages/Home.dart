@@ -296,7 +296,7 @@ class _HomeState extends State<Home> {
         context,
         MaterialPageRoute(
           builder: (context){
-            return ContatoDeEmergencia();
+            return ContatoDeEmergencia(this._idUsuario);
           }
         )
       );
