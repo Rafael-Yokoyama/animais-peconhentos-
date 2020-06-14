@@ -10,6 +10,7 @@ class Prevencoes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         backgroundColor: Colors.black,
         title: Center(
           child: Text(
