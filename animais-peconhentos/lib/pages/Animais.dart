@@ -76,21 +76,20 @@ class _AnimaisState extends State<Animais> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Center(
-          child: Text(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Text(
             "Lista de ${widget._nome}".toUpperCase(),
             style: TextStyle(
               color: Color(0xFFaebb25)
             ),
           ),
         ),
+        body: _gerarTela()
       ),
-      body: SafeArea(
-        child: _gerarTela()
-      )
     );
   }
 }
