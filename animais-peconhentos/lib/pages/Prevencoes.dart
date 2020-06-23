@@ -8,22 +8,21 @@ class Prevencoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-
-        backgroundColor: Colors.black,
-        title: Center(
-          child: Text(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Text(
             "Prevenções".toUpperCase(),
             style: TextStyle(
               color: Color(0xFFaebb25)
             ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Container(
+        body: Container(
           height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("images/fundo.jpg"),
@@ -39,7 +38,7 @@ class Prevencoes extends StatelessWidget {
             )
           )
         )
-      )
+      ),
     );
   }
 }
