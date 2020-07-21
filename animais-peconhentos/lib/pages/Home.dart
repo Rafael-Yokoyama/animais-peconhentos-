@@ -314,7 +314,7 @@ class _HomeState extends State<Home> {
       title: Text(
         "Animais peçonhentos".toUpperCase(),
         style: TextStyle(
-          color: Color(0xFFaebb25)
+          color: Colors.yellow,fontSize: 25
         ),
       ),
       actions: actions,

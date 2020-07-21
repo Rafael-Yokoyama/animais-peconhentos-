@@ -36,11 +36,13 @@ class _AnimaisState extends State<Animais> {
           if(!snapshot.hasData) return const Text("Carregando...");
 
           return GridView.builder(
+
             //itemExtent: 80,
             itemCount: snapshot.data.documents.length,
 
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
+                childAspectRatio: MediaQuery.of(context).size.width/(MediaQuery.of(context).size.height / 1.4),
               //crossAxisSpacing: 10.0,
               mainAxisSpacing: 10.0
             ),
@@ -48,6 +50,7 @@ class _AnimaisState extends State<Animais> {
             itemBuilder: (context, index){
 
               return Boxes(
+
                 snapshot.data.documents[index]["nome"],
                 snapshot.data.documents[index]["imagem"],
                 (){

@@ -36,12 +36,24 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Medium.ttf
+        - asset: fonts/Raleway-Italic.ttf
+        - asset: fonts/Raleway-SemiBold.ttf
+
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-Regular.ttf
+        - asset: fonts/RobotoMono-Bold.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
