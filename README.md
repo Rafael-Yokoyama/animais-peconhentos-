@@ -2,8 +2,11 @@
  
   
 ### Animais peçonhentos
- ![Badge](https://img.shields.io/static/v1?label=dart&message=98.6%&color=blue&style=flat&logo=) 
-   ![Badge](https://img.shields.io/static/v1?label=license&message=MIT&color=green&style=flat&logo=)  
+ ![Badge](https://img.shields.io/static/v1?label=Dart&message=98.8%&color=blue&style=flat&logo=)
+  ![Badge](https://img.shields.io/static/v1?label=Kotlin&message=1.6%&color=orange&style=flat&logo=) 
+   ![Badge](https://img.shields.io/static/v1?label=Swift&message=1.5%&color=red&style=flat&logo=) 
+    ![Badge](https://img.shields.io/static/v1?label=Objective-C&message=0.1%&color=green&style=flat&logo=) 
+   ![Badge](https://img.shields.io/static/v1?label=license&message=MIT&color=success&style=flat&logo=)  
    
    
    
